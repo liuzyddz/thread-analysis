@@ -1,0 +1,23 @@
+group 'com.haotian'
+version '0.0.1-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    implementation 'commons-cli:commons-cli:1.4'
+    implementation 'net.sf.jsqlparser:jsqlparser:0.8.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.3.1'
+    implementation 'com.h2database:h2:1.4.197'
+
+}
+
+mainClassName='com.haotian.analysis.ui.AnalysisUI'

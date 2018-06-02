@@ -1,0 +1,79 @@
+{
+  "title": "线程分析工具",
+  "min-width": 600,
+  "min-height": 500,
+  "selector": [".txt", ".log"],
+  "menu": {
+    "menu-file": "文件",
+    "menu-select": "选择",
+    "menu-open": "打开",
+    "menu-exit": "退出",
+    "label-condition": "条件",
+    "action-query": "查询",
+    "tree.label.root": "线程文件"
+  },
+  "query-type": [
+    {
+      "name": "线程名",
+      "value": 1
+    },
+    {
+      "name": "线程内容",
+      "value": 2
+    },
+    {
+      "name": "线程状态",
+      "value": 3
+    },
+    {
+      "name": "线程号(DEC)",
+      "value": 4
+    },
+    {
+      "name": "线程号(HEX)",
+      "value": 5
+    }
+  ],
+  "h2-config": {
+    "username": "analysis",
+    "password": "1qazXSW@",
+    "url": "jdbc:h2:mem:thread.store",
+    "init-db": [
+      "create table t_thread_summary(thread_file varchar(128), thread_enc_id varchar(32))",
+      "create table t_thread_details(thread_enc_id varchar(32), thread_name varchar(128), thread_details longtext, thread_dec_id varchar(32), thread_hex_id varchar(32), thread_state varchar(64))"
+    ],
+    "sql-mapping": {
+      "save-thread-summary-sql": "insert into t_thread_summary(thread_file, thread_enc_id) values(?, ?)",
+      "save-thread-details-sql": "insert into t_thread_details(thread_enc_id, thread_name, thread_details, thread_dec_id, thread_hex_id, thread_state) values(?, ?, ?, ?, ?, ?)",
+      "search-thread-details-byname-sql": "select thread_enc_id, thread_name, thread_details, thread_dec_id, thread_hex_id, thread_state from t_thread_details where thread_enc_id = ? and instr(thread_name, ?) > 0",
+      "search-thread-details-bystack-sql": "select thread_enc_id, thread_name, thread_details, thread_dec_id, thread_hex_id, thread_state from t_thread_details where thread_enc_id = ? and instr(thread_details, ?) > 0",
+      "search-thread-details-bystate-sql": "select thread_enc_id, thread_name, thread_details, thread_dec_id, thread_hex_id, thread_state from t_thread_details where thread_enc_id = ? and instr(thread_state, ?) > 0",
+      "search-thread-details-bydec-sql": "select thread_enc_id, thread_name, thread_details, thread_dec_id, thread_hex_id, thread_state from t_thread_details where thread_enc_id = ? and instr(thread_dec_id, ?) > 0",
+      "search-thread-details-byhex-sql": "select thread_enc_id, thread_name, thread_details, thread_dec_id, thread_hex_id, thread_state from t_thread_details where thread_enc_id = ? and instr(thread_hex_id, ?) > 0",
+      "search-thread-details-byall-sql": "select thread_enc_id, thread_name, thread_details, thread_dec_id, thread_hex_id, thread_state from t_thread_details where thread_enc_id = ?",
+      "search-thread-summary-sql": "select thread_enc_id, thread_file from t_thread_summary"
+    }
+  },
+  "screen":[
+    {
+      "width": 1024,
+      "height": 768,
+      "font-size": 14
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "font-size": 18
+    },
+    {
+      "width": 2800,
+      "height": 1920,
+      "font-size": 22
+    },
+    {
+      "width": 4096,
+      "height": 2080,
+      "font-size": 26
+    }
+  ]
+}
