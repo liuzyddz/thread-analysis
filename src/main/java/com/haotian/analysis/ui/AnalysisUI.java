@@ -52,7 +52,12 @@ public class AnalysisUI {
                 if (table.getSelectedRowCount() > 1) {
                     ComposeHolder.textPane.setText("selected [" + table.getSelectedRowCount() + "] lines");
                 } else {
-                    ComposeHolder.textPane.setText(((ThreadTableModel) table.getModel()).getValueAt(e.getFirstIndex()).getThreadDetails());
+                    ThreadItem threadItem = ((ThreadTableModel) table.getModel()).getValueAt(e.getFirstIndex());
+                    if (threadItem != null) {
+                        ComposeHolder.textPane.setText(threadItem.getThreadDetails());
+                    } else {
+                        ComposeHolder.textPane.setText("");
+                    }
                 }
             }
         });
