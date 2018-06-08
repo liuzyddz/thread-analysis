@@ -105,7 +105,7 @@ public class AnalysisUI {
         doQueryButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                threadHeaderMouseListener.doThreadTableReload();
+                threadHeaderMouseListener.doThreadTableReload(false);
             }
         });
         doQueryButton.setFont(menuFont);
@@ -196,7 +196,7 @@ public class AnalysisUI {
                 H2Helper.saveThreadSummary(hsfStackFile.getName(), hsfStackFile.getName());
                 for (ThreadInfo threadInfo: threadInfoList) {
                     threadInfo.initDefault();
-                    H2Helper.saveThreadItem(new ThreadItem(hsfStackFile.getName(), threadInfo.getThreadName(), threadInfo.getStackStrace(), threadInfo.getThreadDecId(), threadInfo.getThreadState(), threadInfo.getThreadHexId()));
+                    H2Helper.saveThreadItem(new ThreadItem(hsfStackFile.getName(), threadInfo.getThreadName(), threadInfo.getStackStrace(), threadInfo.getThreadState(), threadInfo.getThreadDecId(), threadInfo.getThreadHexId()));
                 }
                 ComposeHolder.tree.setModel(new ThreadTreeModel());
             }

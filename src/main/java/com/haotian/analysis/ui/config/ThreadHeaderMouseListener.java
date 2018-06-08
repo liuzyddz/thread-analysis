@@ -18,15 +18,21 @@ public class ThreadHeaderMouseListener extends MouseAdapter {
     }
 
     public void doThreadTableReload() {
+        doThreadTableReload(true);
+    }
+
+    public void doThreadTableReload(boolean reOrder) {
         if (orderFieldIdx == 0) {
             return;
         }
         String threadEncId = ((ThreadTableModel) table.getModel()).getThreadEncId();
         ThreadTableModel tableModel = new ThreadTableModel(threadEncId, orderFieldIdx, order, ComposeHolder.queryArg.getText(), ComposeHolder.byQuery());
-        if (order == ThreadTableModel.DESC) {
-            order = ThreadTableModel.ASC;
-        } else {
-            order = ThreadTableModel.DESC;
+        if (reOrder) {
+            if (order == ThreadTableModel.DESC) {
+                order = ThreadTableModel.ASC;
+            } else {
+                order = ThreadTableModel.DESC;
+            }
         }
         table.setModel(tableModel);
         table.setEnabled(true);

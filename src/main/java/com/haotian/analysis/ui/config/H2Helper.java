@@ -108,7 +108,7 @@ public class H2Helper {
     }
 
     private static ThreadItem extractThreadItem(ResultSet rs) throws SQLException {
-        return new ThreadItem(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+        return new ThreadItem(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(4), rs.getString(5));
     }
 
     public static List<ThreadItem> searchThreadItemByStack(String threadEncId, String queryArg) {
